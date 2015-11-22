@@ -45,24 +45,21 @@ public class MainActivity extends ActionBarActivity {
                     String[] url = new String[]{s};
 
                     s = new GetData().execute(url).get();
-                    TextView tv = (TextView) findViewById(R.id.textView3);
-                    tv.setText(s);
+
+                    if (s.equals("goodlogin")) {
+                        Intent intent = new Intent(getBaseContext(), DeckActivity.class);
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        TextView tv = (TextView) findViewById(R.id.textView3);
+                        tv.setText(s);
+                    }
+
+
 
                 } catch (Exception e) {
                     Log.i(TAG, e.toString());
                 }
-            }
-        });
-
-        //button 3 launches next activity, need to check the text beofre new activity is launched.
-
-        Button b3 = (Button) findViewById(R.id.button3);
-
-        b3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getBaseContext(), DeckActivity.class);
-                startActivity(intent);
             }
         });
     }
